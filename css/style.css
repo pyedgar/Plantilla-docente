@@ -1,0 +1,1005 @@
+/* 🎓 SISTEMA GESTIÓN DOCENTE UTC · ESTÉTICA DE ESTUDIO (Premium) */
+
+:root {
+    /* Paleta de Colores: Verde, Blanco, Negro, Gris */
+    --primary-bg: #0d1110;
+    /* Negro/Gris muy oscuro - fondo principal */
+    --secondary-bg: #161b19;
+    /* Gris oscuro - tarjetas */
+    --accent-color: #10b981;
+    /* Verde esmeralda (Motivación/Enfoque) */
+    --accent-light: #34d399;
+    /* Verde menta suave */
+    --accent-dark: #047857;
+    /* Verde oscuro */
+
+    --text-main: #f8fafc;
+    /* Blanco puro */
+    --text-muted: #94a3b8;
+    /* Gris claro text */
+    --border-color: #334155;
+    /* Gris medio bordes */
+
+    --background-gradient: radial-gradient(circle at 50% 0%, #172a23 0%, #0d1110 70%);
+    --card-bg: rgba(22, 27, 25, 0.75);
+    --card-border: 1px solid rgba(16, 185, 129, 0.15);
+
+    --font-primary: 'Outfit', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --shadow-main: 0 40px 70px -10px rgba(0, 0, 0, 0.5);
+
+    --border-radius-xl: 3rem;
+    --border-radius-lg: 2rem;
+    --border-radius-md: 1.2rem;
+    --border-radius-sm: 0.8rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--primary-bg);
+    background-image: var(--background-gradient);
+    font-family: var(--font-primary);
+    color: var(--text-main);
+    padding: 2.5rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+::selection {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
+}
+
+/* =========================================================================
+   ANIMACIONES DE FONDO (PARTÍCULAS DE ESTUDIO / ENFOQUE)
+   ========================================================================= */
+.study-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    color: rgba(16, 185, 129, 0.05);
+    /* Verde muy tenue */
+    font-size: 5rem;
+    animation: floatUp 20s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.2));
+}
+
+.particle:nth-child(1) {
+    left: 10%;
+    animation-duration: 25s;
+    font-size: 4rem;
+    animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+    left: 35%;
+    animation-duration: 35s;
+    font-size: 8rem;
+    animation-delay: 5s;
+}
+
+.particle:nth-child(3) {
+    left: 60%;
+    animation-duration: 28s;
+    font-size: 5rem;
+    animation-delay: 2s;
+}
+
+.particle:nth-child(4) {
+    left: 85%;
+    animation-duration: 32s;
+    font-size: 7rem;
+    animation-delay: 8s;
+}
+
+.particle:nth-child(5) {
+    left: 50%;
+    animation-duration: 40s;
+    font-size: 10rem;
+    animation-delay: 15s;
+    opacity: 0.02;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(110vh) rotate(0deg) scale(0.8);
+    }
+
+    50% {
+        transform: translateY(50vh) rotate(180deg) scale(1.1);
+    }
+
+    100% {
+        transform: translateY(-20vh) rotate(360deg) scale(0.8);
+    }
+}
+
+/* =========================================================================
+   CONTAINER PRINCIPAL
+   ========================================================================= */
+.presentation-deck {
+    max-width: 1350px;
+    width: 100%;
+    background: var(--card-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-main), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    padding: 3.5rem 4rem;
+    border: var(--card-border);
+    position: relative;
+    z-index: 10;
+}
+
+/* =========================================================================
+   HEADER & LOGO
+   ========================================================================= */
+.logo-header {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem 3rem;
+    border-left: 6px solid var(--accent-light);
+    animation: fadeDown 1s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: var(--border-radius-sm);
+    padding: 0.8rem 1.2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.logo-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+}
+
+.logo-container img {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
+}
+
+.titulo-principal {
+    flex-grow: 1;
+}
+
+.titulo-principal h1 {
+    font-weight: 800;
+    font-size: 2.8rem;
+    color: var(--text-main);
+    line-height: 1.15;
+}
+
+.titulo-principal h1 small {
+    font-family: var(--font-primary);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--accent-light);
+    display: block;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* =========================================================================
+   ANIMACIONES HEADER (PULSO DE ESTUDIO / FOCUS)
+   ========================================================================= */
+.focus-icons {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;
+}
+
+.focus-icons i {
+    font-size: 2.2rem;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    animation: floatGentle 4s infinite ease-in-out;
+}
+
+.focus-icons i:nth-child(2) {
+    animation-delay: 1s;
+    color: var(--accent-light);
+    filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.5));
+}
+
+.focus-icons i:nth-child(3) {
+    animation-delay: 2s;
+}
+
+@keyframes floatGentle {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================================
+   TEXTOS INTRODUCTORIOS
+   ========================================================================= */
+.intro-text {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 3.5rem;
+    line-height: 1.8;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem 2.5rem;
+    border-radius: var(--border-radius-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-text strong {
+    color: var(--text-main);
+    font-weight: 600;
+    box-shadow: inset 0 -4px 0 var(--accent-dark);
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================================
+   TITULOS DE SECCION
+   ========================================================================= */
+.section-title {
+    font-size: 2.2rem;
+    margin: 4rem 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.section-title i {
+    color: var(--accent-light);
+    background: rgba(16, 185, 129, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 1.8rem;
+}
+
+.section-title.bordered {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 1rem;
+}
+
+/* =========================================================================
+   MÉTRICAS (GRID MINIMALISTA)
+   ========================================================================= */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.metric-card {
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius-md);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: left;
+}
+
+.metric-card:hover::before {
+    transform: scaleX(1);
+}
+
+.metric-card:hover {
+    transform: translateY(-8px);
+    background: #1c2220;
+    border-color: rgba(16, 185, 129, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.05);
+}
+
+.metric-card i {
+    font-size: 2.5rem;
+    color: var(--accent-light);
+    margin-bottom: 1.2rem;
+    filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.4));
+}
+
+.metric-card h4 {
+    color: var(--text-main);
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+    font-weight: 800;
+}
+
+.metric-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================================================
+   GALERÍA DE IMÁGENES (ESTUDIO / LIMPIO)
+   ========================================================================= */
+.carrusel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.img-card {
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+}
+
+.img-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 20px 40px rgba(16, 185, 129, 0.1);
+}
+
+.img-wrapper {
+    width: 100%;
+    height: 240px;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    position: relative;
+    background: var(--primary-bg);
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.9;
+}
+
+.img-card:hover .img-wrapper img {
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+.img-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 17, 16, 0.6);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-card:hover .img-overlay {
+    opacity: 1;
+}
+
+.img-overlay i {
+    font-size: 3rem;
+    color: var(--text-main);
+    background: var(--accent-color);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    border-radius: 50%;
+    transform: scale(0.5);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
+}
+
+.img-card:hover .img-overlay i {
+    transform: scale(1);
+}
+
+.img-caption {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--text-main);
+}
+
+/* =========================================================================
+   STACK TECNOLÓGICO (BURBUJAS MINIMAL)
+   ========================================================================= */
+.codigo-explicacion {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-lg);
+    padding: 3.5rem;
+    margin: 4rem 0;
+    border-left: 6px solid var(--accent-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-bubbles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.bubble {
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius-md);
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bubble:hover {
+    border-color: rgba(16, 185, 129, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    background: #19201d;
+    /* Suave tinte verde oscuro */
+}
+
+.bubble i {
+    font-size: 2.8rem;
+    color: var(--accent-light);
+    margin-bottom: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.bubble:hover i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.bubble .lenguaje {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--text-main);
+}
+
+.bubble p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.info-banner {
+    margin-top: 3rem;
+    background: rgba(16, 185, 129, 0.05);
+    padding: 1.5rem 2.5rem;
+    border-radius: var(--border-radius-md);
+    border-left: 4px solid var(--accent-color);
+    font-size: 1.1rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    color: var(--text-muted);
+}
+
+.info-banner i {
+    font-size: 2rem;
+    color: var(--accent-light);
+}
+
+/* =========================================================================
+   EQUIPO (TARJETAS LIMPIAS)
+   ========================================================================= */
+.equipo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    margin: 3rem 0;
+}
+
+.integrante {
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius-md);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.integrante:hover {
+    border-color: var(--accent-light);
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.08);
+}
+
+.integrante i {
+    font-size: 3rem;
+    color: var(--primary-bg);
+    background: var(--accent-light);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.integrante:hover i {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.integrante .nombre {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.integrante .rol {
+    font-size: 1rem;
+    color: var(--accent-color);
+    font-family: var(--font-heading);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* =========================================================================
+   DIAGRAMA GANTT (PROGRESO ACADÉMICO / VERDE)
+   ========================================================================= */
+.gantt-visual {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem;
+    margin: 4rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.gantt-barra {
+    display: flex;
+    height: 35px;
+    width: 100%;
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 2.5rem 0 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.fase {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-bg);
+    font-weight: 700;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.fase::before {
+    content: '\f00c';
+    /* Checkmark */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 6px;
+}
+
+.fase4,
+.fase5 {
+    color: white;
+}
+
+/* Gradiente Verde para las fases */
+.fase1 {
+    background: #064e3b;
+    width: 15%;
+    animation: fillWidth1 1s ease-out forwards;
+    color: white;
+}
+
+.fase2 {
+    background: #065f46;
+    width: 25%;
+    animation: fillWidth2 1s ease-out 0.2s forwards;
+    opacity: 0;
+    color: white;
+}
+
+.fase3 {
+    background: #047857;
+    width: 35%;
+    animation: fillWidth3 1s ease-out 0.4s forwards;
+    opacity: 0;
+    color: white;
+}
+
+.fase4 {
+    background: #059669;
+    width: 15%;
+    animation: fillWidth4 1s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+.fase5 {
+    background: #10b981;
+    width: 10%;
+    animation: fillWidth5 1s ease-out 0.8s forwards;
+    opacity: 0;
+    color: #0d1110;
+}
+
+@keyframes fillWidth1 {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 15%;
+    }
+}
+
+@keyframes fillWidth2 {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 25%;
+        opacity: 1;
+    }
+}
+
+@keyframes fillWidth3 {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 35%;
+        opacity: 1;
+    }
+}
+
+@keyframes fillWidth4 {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 15%;
+        opacity: 1;
+    }
+}
+
+@keyframes fillWidth5 {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+
+    100% {
+        width: 10%;
+        opacity: 1;
+    }
+}
+
+.gantt-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    padding: 0 5px;
+}
+
+/* =========================================================================
+   FOOTER (FIRMADO / MINIMAL)
+   ========================================================================= */
+.firmas-reemplazo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 5rem;
+    background: transparent;
+}
+
+.responsable-linea {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.responsable-linea:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: var(--text-main);
+    transform: translateY(-3px);
+}
+
+.responsable-linea i {
+    color: var(--accent-color);
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.footer-info span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-info i {
+    color: var(--accent-light);
+    font-size: 1.2rem;
+}
+
+/* =========================================================================
+   MEDIA QUERIES (RESPONSIVE)
+   ========================================================================= */
+@media (max-width: 900px) {
+    .study-particles {
+        display: none;
+    }
+
+    .presentation-deck {
+        padding: 2.5rem;
+        border-radius: 2rem;
+    }
+
+    .titulo-principal h1 {
+        font-size: 2.2rem;
+    }
+
+    .equipo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .logo-header {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 2rem;
+    }
+
+    .focus-icons {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .presentation-deck {
+        padding: 1.5rem;
+    }
+
+    .titulo-principal h1 {
+        font-size: 1.8rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .codigo-explicacion {
+        padding: 2rem;
+        border-radius: 2rem;
+    }
+
+    .gantt-labels {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .gantt-barra {
+        height: auto;
+        flex-direction: column;
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    .fase {
+        width: 100% !important;
+        height: 35px;
+    }
+
+    @keyframes fillWidth1 {
+        0% {
+            height: 0;
+        }
+
+        100% {
+            height: 35px;
+        }
+    }
+
+    @keyframes fillWidth2 {
+        0% {
+            height: 0;
+            opacity: 1;
+        }
+
+        100% {
+            height: 35px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fillWidth3 {
+        0% {
+            height: 0;
+            opacity: 1;
+        }
+
+        100% {
+            height: 35px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fillWidth4 {
+        0% {
+            height: 0;
+            opacity: 1;
+        }
+
+        100% {
+            height: 35px;
+            opacity: 1;
+        }
+    }
+
+    @keyframes fillWidth5 {
+        0% {
+            height: 0;
+            opacity: 1;
+        }
+
+        100% {
+            height: 35px;
+            opacity: 1;
+        }
+    }
+
+    .fase1 {
+        animation-name: fillWidth1;
+    }
+
+    .fase2 {
+        animation-name: fillWidth2;
+    }
+
+    .fase3 {
+        animation-name: fillWidth3;
+    }
+
+    .fase4 {
+        animation-name: fillWidth4;
+    }
+
+    .fase5 {
+        animation-name: fillWidth5;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+    }
+}
